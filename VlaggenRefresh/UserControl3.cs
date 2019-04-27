@@ -97,6 +97,7 @@ namespace VlaggenRefresh
             }
             else
             {
+                this.Visible = false;
                 MessageBox.Show("End of quiz");
             }
         }
