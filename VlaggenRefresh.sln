@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.202
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VlaggenRefresh", "VlaggenRefresh\VlaggenRefresh.csproj", "{FFBF66F9-957C-4D09-9179-CB406E0B0F3F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FFBF66F9-957C-4D09-9179-CB406E0B0F3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBF66F9-957C-4D09-9179-CB406E0B0F3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFBF66F9-957C-4D09-9179-CB406E0B0F3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFBF66F9-957C-4D09-9179-CB406E0B0F3F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2CD84B4A-DA89-4B3C-B76F-787C6981C915}
+	EndGlobalSection
+EndGlobal
