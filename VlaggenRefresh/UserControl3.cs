@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using VlaggenRefresh.Properties;
 
@@ -101,7 +95,7 @@ namespace VlaggenRefresh
                 theVlag = rVlag;
                 VlaggenPool = TableRemove(VlaggenPool, ChosenVlag);
                 PickPool = FillPickPool();
-                int WhereToPlace = r.Next(1, 3);
+                int WhereToPlace = r.Next(1, 4);
                 for (int i = 1; i < 4; i++)
                 {
                     if (WhereToPlace != i)
