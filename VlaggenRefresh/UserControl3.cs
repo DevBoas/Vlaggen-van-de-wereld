@@ -14,10 +14,11 @@ namespace VlaggenRefresh
     public partial class UserControl3 : UserControl
     {
         string[] Vlaggen = { "Argentinie", "France", "Germany", "Italy", "Lithuania", "Netherlands", "United_States", "Belgium", "Canada", "Japan" };
-        string[] VlaggenPool = {};
-        
-        string theVlag = "";
+        string[] VlaggenPool = { };
 
+        string theVlag = "";
+        int round = 0;
+        int correct = 0;
         public UserControl3()
         {
             InitializeComponent();
@@ -66,28 +67,60 @@ namespace VlaggenRefresh
             return thePic;
         }
 
+        private string[] FillPickPool()
+        {
+            string[] strarr = { };
+
+            for (int i = 0; i < VlaggenPool.Length; i++)
+            {
+                strarr = TableInsert(strarr, VlaggenPool[i]);
+            }
+
+            return strarr;
+
+        }
         private void Quiz(string vlag)
         {
+            if (vlag != "")
+                round++;
             if (vlag != "" && (vlag == theVlag))
+            {
+                correct++;
                 MessageBox.Show("That's right!");
+            }
             else if (vlag != "" && (vlag != theVlag))
                 MessageBox.Show("That's incorrect!");
 
-            if (VlaggenPool.Length > 3)
+            string[] PickPool = {};
+
+            if (VlaggenPool.Length > 2)
             {
                 Random r = new Random();
-                int pick = r.Next(1, 4);
+                int ChosenVlag = r.Next(0, VlaggenPool.Length);
+                string rVlag = VlaggenPool[ChosenVlag];
+                theVlag = rVlag;
+                VlaggenPool = TableRemove(VlaggenPool, ChosenVlag);
+                PickPool = FillPickPool();
+                int WhereToPlace = r.Next(1, 3);
                 for (int i = 1; i < 4; i++)
                 {
-                    int rInt = r.Next(0, VlaggenPool.Length);
-                    string rVlag = VlaggenPool[rInt];
-                    PictureBox pic = Find_Vlag(i);
-                    object O = Resources.ResourceManager.GetObject(rVlag);
-                    pic.Image = (Image)O;
-                    pic.Image.Tag = rVlag;
-                    if (i == pick)
-                        theVlag = rVlag;
-                    VlaggenPool = TableRemove(VlaggenPool, rInt);
+                    if (WhereToPlace != i)
+                    {
+                        int rInt = r.Next(0, PickPool.Length);
+                        rVlag = PickPool[rInt];
+                        PickPool = TableRemove(PickPool, rInt);
+                        PictureBox pic = Find_Vlag(i);
+                        object O = Resources.ResourceManager.GetObject(rVlag);
+                        pic.Image = (Image)O;
+                        pic.Image.Tag = rVlag; 
+                    }
+                    else
+                    {
+                        PictureBox pic = Find_Vlag(i);
+                        object O = Resources.ResourceManager.GetObject(theVlag);
+                        pic.Image = (Image)O;
+                        pic.Image.Tag = theVlag;
+                    }
                 }
 
                 if(theVlag == "United_States")
@@ -98,6 +131,7 @@ namespace VlaggenRefresh
             else
             {
                 this.Visible = false;
+                MessageBox.Show("You got " + correct.ToString() + " out of " + round.ToString() + " correct");
                 MessageBox.Show("End of quiz");
             }
         }
@@ -107,6 +141,10 @@ namespace VlaggenRefresh
             UserControl user = (sender as UserControl);
             if (user.Visible)
             {
+                round = 0;
+                correct = 0;
+                while (VlaggenPool.Length > 0)
+                    VlaggenPool = TableRemove(VlaggenPool, 0);
                 for (int i = 0; i < Vlaggen.Length; i++)
                 {
                     VlaggenPool = TableInsert(VlaggenPool, Vlaggen[i]);
